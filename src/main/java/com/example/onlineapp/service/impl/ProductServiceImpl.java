@@ -23,14 +23,16 @@ public class ProductServiceImpl implements ProductService {
 
     @SneakyThrows
     @Override
-    public String save(Product product, MultipartFile productImage) {
+    public String save(Product product,
+                       MultipartFile productImage) {
         String productImageName = System.currentTimeMillis() + "_" + productImage.getOriginalFilename();
         productImage.transferTo(new File(productImagesFolder + productImageName));
 
         product.setImage(productImageName);
 
         productRepository.save(product);
-        return "Success save product";
+
+        return "Success";
     }
 
     @Override

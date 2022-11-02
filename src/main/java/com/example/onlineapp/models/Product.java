@@ -38,22 +38,24 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "product_category",
-            joinColumns = {@JoinColumn(name = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
-    )
-    private List<ProductCategory> categories;
+//    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "product_category",
+//            joinColumns = {@JoinColumn(name = "product_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+//    )
+//    private List<ProductCategory> categories;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    private ProductCategory category;
+
 
     @Column
     private String image;
 
     @Column
     private LocalDateTime created;
-
-    @Column
-    private LocalDateTime activationDate;
 
     @Column
     private LocalDateTime updated;

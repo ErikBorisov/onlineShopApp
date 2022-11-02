@@ -1,0 +1,48 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin-Page</title>
+</head>
+<body>
+<p id="m" class="fa fa-user-circle-o" th:text=" ${currentUser.firstName}"></p>
+<p id="current_user_surname" class="fa fa-user-circle-o" th:text=" ${currentUser.lastName}"></p>
+<div class="product">
+    <p>Add product:</p>
+    <form th:action="@{/product}" enctype="multipart/form-data" th:object="${product}" method="post">
+        <select th:field="*{category}">
+            <option th:each="categ : ${categorys}" th:value="${categ.id}" th:text="${categ.name}">
+            </option>
+        </select>
+        <input placeholder="name" type="text" th:field="*{name}">
+        <input type="number" th:field="*{count}">
+        <input type="number" th:field="*{price}">
+        <!--    <textarea placeholder="price" type="" th:field="*{price}"></textarea>-->
+        <!--    <textarea placeholder="count" type="text" th:field="*{count}"></textarea>-->
+        <!--    <textarea placeholder="status" type="text" th:field="*{status}"></textarea>-->
+        <div class="field">
+            <input type="file" name="productImage" placeholder="Choose your image" required>
+        </div>
+        <button>Add product</button>
+    </form>
+</div>
+<div th:if="${allProducts.size()!=0}">
+    <p>all products:</p>
+    <table>
+        <thead>
+        <th>name</th>
+        <th>price</th>
+        <th>image</th>
+        <th>count</th>
+        <!--        <th>IsActive</th>-->
+        </thead>
+        <tr th:each="product: ${allProducts}">
+            <td th:text="${product.getName()}"/>
+            <td th:text="${product.price}"/>
+            <td>
+                <img th:src="@{${'/user/image/' + product.image}}" width="200" , height="300">
+            </td>
+            <td th:text="${product.price}"/>
+</div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 insert into category (name, created) values
-                                          ('Beverage', current_timestamp ),
                                           ('Bakery', current_timestamp ),
+                                          ('Beverage', current_timestamp ),
                                           ('Meat', current_timestamp ),
-                                          ('Seafood', current_timestamp );
+                                          ('SeaFood', current_timestamp );
